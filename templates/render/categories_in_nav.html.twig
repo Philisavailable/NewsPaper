@@ -1,0 +1,11 @@
+<div class="row">
+    <p class="d-flex justify-content-around">
+
+        {% for category in categories %}
+
+            <a href="" class="text-decoration-none text-dark item-hover">{{ category.name | capitalize }}</a>
+
+        {% endfor %}
+
+    </p>
+</div>
