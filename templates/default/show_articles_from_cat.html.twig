@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil | Newspaper{% endblock %}
+{% block title %}Articles de la catégorie {{ category.name }} {% endblock %}
 
 {% block body %}
-    <h1 class="text-center my-4">Articles à la une</h1>
+    <h1 class="text-center my-4">Catégorie {{ category.name }}</h1>
 
     <div class="ow">
         <div class="col-10 mx-auto">
@@ -20,7 +20,7 @@
                         <div class="card-body">
                           <h5 class="card-title">{{ article.title | capitalize }}</h5>
                           <p class="card-text">{{ article.subtitle }}</p>
-                          <p class="card-text"><small class="text-muted">Créé le{{ article.createdAt | date('d/m/Y') }}</small></p>
+                          <p class="card-text"><small class="text-muted">Créé le {{ article.createdAt | date('d/m/Y') }}</small></p>
                         </div>
                       </div>
                     </div>
