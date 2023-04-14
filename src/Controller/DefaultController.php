@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentaryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,12 +38,15 @@ class DefaultController extends AbstractController
     }// end shoFromCat()
 
     #[Route('/{cat_alias}/{art_alias}/_{id}.html', name: 'show_article', methods: ['GET'])]
-    public function showAtricle(Article $article, Category $category):Response
+    public function showAtricle(Article $article, Category $category, CommentaryRepository $commentRep):Response
     {
+
+        $commentaries = $commentRep->findBy(['deletedAt' => null, 'article' => $article->getId()]);
         
         return $this->render('default/show_article.html.twig', [
             'article' => $article,
-            'category' => $category
+            'category' => $category,
+            'commentaries' => $commentaries
         ]);
 
     }
